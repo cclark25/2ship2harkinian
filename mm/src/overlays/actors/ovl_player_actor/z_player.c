@@ -13025,22 +13025,22 @@ s32 Ship_HandleFirstPersonAiming(PlayState* play, Player* this, s32 arg2) {
         // stickX += gyroX * 60.0f * CVarGetFloat("gEnhancements.Camera.FirstPerson.GyroSensitivityX", 1.0f);
         // stickY += gyroY * 60.0f * CVarGetFloat("gEnhancements.Camera.FirstPerson.GyroSensitivityY", 1.0f);
         
-        static float lastX = 0;
-        static float lastY = 0;
-        float gyroX = sPlayerControlInput->cur.stick_x; // -60 to 60
-        float gyroY = sPlayerControlInput->cur.stick_y; // -60 to 60
+        static s32 lastX = 0;
+        static s32 lastY = 0;
+        s32 gyroX = sPlayerControlInput->cur.stick_x; // -60 to 60
+        s32 gyroY = sPlayerControlInput->cur.stick_y; // -60 to 60
 
         gyroX *= CVarGetInteger("gEnhancements.Camera.FirstPerson.GyroInvertX", 0) ? 1 : -1;
         gyroY *= CVarGetInteger("gEnhancements.Camera.FirstPerson.GyroInvertY", 0) ? 1 : -1;
 
-        float diffX = gyroX - lastX;
-        float diffY = gyroY - lastY;
+        s32 diffX = gyroX - lastX;
+        s32 diffY = gyroY - lastY;
         lastX = gyroX;
         lastY = gyroY;
 
         if (CVarGetInteger("gEnhancements.Camera.FirstPerson.GyroEnabled", 0)){
-            stickX += diffX * 60.0f * CVarGetFloat("gEnhancements.Camera.FirstPerson.GyroSensitivityX", 1.0f);
-            stickY += diffY * 60.0f * CVarGetFloat("gEnhancements.Camera.FirstPerson.GyroSensitivityY", 1.0f);
+            stickX += diffX * CVarGetFloat("gEnhancements.Camera.FirstPerson.GyroSensitivityX", 1.0f);
+            stickY += diffY * CVarGetFloat("gEnhancements.Camera.FirstPerson.GyroSensitivityY", 1.0f);
         }
     }
 
