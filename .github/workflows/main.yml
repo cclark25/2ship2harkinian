@@ -165,7 +165,7 @@ jobs:
 
   build-macos:
     needs: generate-2ship-otr
-    runs-on: macos-14
+    runs-on:  [self-hosted, macos-14]
     steps:
     - uses: actions/checkout@v4
       with:
